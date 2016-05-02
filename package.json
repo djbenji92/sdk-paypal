@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/djbenji92/sdk-paypal/issues"
   },
-  "homepage": "https://github.com/djbenji92/sdk-paypal#readme"
+  "homepage": "https://github.com/djbenji92/sdk-paypal#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
