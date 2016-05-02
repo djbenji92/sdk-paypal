@@ -7,7 +7,7 @@ app.use('/views', express.static(__dirname + '/views'));
 
 // Chargement de la page index.html
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/views/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 
