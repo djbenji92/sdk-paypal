@@ -1,6 +1,5 @@
 var app = require('express')(),
-    server = require('http').createServer(app),
-    express = require('express')
+    server = require('http').createServer(app)
 
 app.use('/script', express.static(__dirname + '/script'));
 app.use('/views', express.static(__dirname + '/views'));
