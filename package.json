@@ -1,0 +1,19 @@
+{
+  "name": "sdk-paypal",
+  "version": "1.0.0",
+  "description": "implementer une solution paypal sous node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djbenji92/sdk-paypal.git"
+  },
+  "author": "benjamin-rouville",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djbenji92/sdk-paypal/issues"
+  },
+  "homepage": "https://github.com/djbenji92/sdk-paypal#readme"
+}
