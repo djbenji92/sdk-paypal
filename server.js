@@ -10,5 +10,6 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 console.log("Server start on port 8080...");
+console.log("Go coder les flemmards !");
 
 server.listen(8080);
