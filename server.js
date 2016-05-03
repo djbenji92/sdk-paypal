@@ -9,6 +9,6 @@ app.use('/views', express.static(__dirname + '/views'));
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
-
+console.log("Server start on port 8080...");
 
 server.listen(8080);
