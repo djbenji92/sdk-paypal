@@ -81,7 +81,8 @@ function createPayment(username, password, return_url, cancel_url, transactions)
 					});
 					res.on('end', function() {
 						response = JSON.parse(response);
-						resolve(response);
+						var redirectUrl = getRedirectUrl(response);
+						resolve(redirectUrl);
 					});
 				});
 
@@ -95,8 +96,55 @@ function createPayment(username, password, return_url, cancel_url, transactions)
 		);
 
 		return promise;
+
+		function getRedirectUrl(createPaymentResponse) {
+			var linksLength = createPaymentResponse.links.length;
+
+			for (var i = 0; i < linksLength; i++) {
+				if(createPaymentResponse.links[i].method === 'REDIRECT') {
+					return createPaymentResponse.links[i].href;
+				}
+			}
+		}
 	}
 
 }
 
+function executePayment(paymentId, payerId, token) {
+	var options = {
+		host: 'api.sandbox.paypal.com',
+		path: '/v1/payments/payment/' + paymentId + '/execute/',
+		method: 'POST',
+		headers: {
+			Accept: 'application/json',
+			Authorization: 'Bearer ' + token,
+			'Content-Type': 'application/json'
+		}
+	};
+
+	var params = {
+		'payer_id': payerId
+	};
+
+	var promise = new Promise(
+    	function(resolve, reject) {
+    		var req = https.request(options, function(res) {
+				res.on('end', function() {
+					resolve('Payment executed');
+				});
+			});
+
+			req.on('error', function(e) {
+			  reject('problem with request: ' + e.message);
+			});
+
+			req.write(JSON.stringify(params));
+			req.end();
+    	}
+	);
+
+	return promise;
+}
+
 exports.createPayment = createPayment;
+exports.executePayment = executePayment;
