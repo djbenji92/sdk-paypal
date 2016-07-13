@@ -1,0 +1,124 @@
+
+
+.BoutonPay{    
+    
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 100px;
+    
+    background-color: #fff;
+    border-radius: 3em;
+    border: 1px solid #e4e4e4;
+    box-sizing: content-box;
+    cursor: pointer;
+    line-height: 2rem;
+    height: 2rem;
+    margin-bottom: 0;
+    padding: 0 .75rem;
+    text-align: center;
+    text-decoration: none;
+    border-color: #009cde;
+    font-size: 20px;
+    color: #009cde;
+    width: 80px;
+}
+.BoutonPay:hover{
+    background-color: #009cde;
+    transition: background .15s ease-out;
+    color: white;
+}
+.BoutonPay a{
+    text-decoration: none;
+    color: #009cde;
+}
+.BoutonPay a:hover{
+    text-decoration: none;
+    color: #fff;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 250px;
+    color: #696969;
+    
+}
+
+.légende{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    width: 270px;
+    text-align: center;
+    color: #A2A2A2;
+}
+
+.sucess{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 100px;
+    border-radius: 8px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    height: 150px;
+    background-color: #d0e9c6;
+    -moz-box-shadow: 10px 10px 30px 0px #656565;
+    -webkit-box-shadow: 10px 10px 30px 0px #656565;
+    -o-box-shadow: 10px 10px 30px 0px #656565;
+    box-shadow: 10px 10px 30px 0px #656565;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=30);
+}
+.sucess h1{
+    color: #3c763d;
+    padding-top: 35px;
+}
+.sucess p{
+    color: #3c763d;
+}
+
+.cancel{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 100px;
+    border-radius: 8px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    height: 150px;
+    background-color: #f2dede;
+    -moz-box-shadow: 10px 10px 30px 0px #656565;
+    -webkit-box-shadow: 10px 10px 30px 0px #656565;
+    -o-box-shadow: 10px 10px 30px 0px #656565;
+    box-shadow: 10px 10px 30px 0px #656565;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=30);
+}
+.cancel h1{
+    color: #a94442;
+    padding-top: 35px;
+}
+.cancel p{
+    color: #a94442;
+}
+
+.infos{
+    color: #fff;
+    text-align: center;
+    -webkit-transform: rotateZ(-45deg);
+    -webkit-transform-origin: top right;
+    -moz-transform: rotateZ(-45deg);
+    -moz-transform-origin: top right;
+    -o-transform: rotateZ(-45deg);
+    -o-transform-origin: top right;
+    transform: rotateZ(-45deg);
+    transform-origin: top right;
+    width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: absolute;
+    /* background: #4b799a; */
+    background: #009cde;
+    top: -28px;
+    left: -85px;
+}
