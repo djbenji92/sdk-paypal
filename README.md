@@ -59,7 +59,12 @@ function executePayment(paymentId, payerId, token)
 * token: paramèrtre retourner par paypal après création du paiement
 
 #Démo
-Vous pouvez voir une démo de notre API en lançant la commande :
+Vous pouvez voir une démo de notre API en lançant les commandes suivantes :
+
+```Shell
+npm install
+```
+
 ```Shell
 node server.js
 ```
