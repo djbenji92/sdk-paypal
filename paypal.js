@@ -41,69 +41,62 @@ function getToken(username, password) {
 	return promise;
 }
 
-function createPayment(username, password, return_url, cancel_url, transactions) {
+function createPayment(token, return_url, cancel_url, transactions) {
 
-	return getToken(username, password)
-		.then(function(token) {
-			return create(token, return_url, cancel_url, transactions);
-		});
+	var options = {
+		host: 'api.sandbox.paypal.com',
+		path: '/v1/payments/payment',
+		method: 'POST',
+		headers: {
+			Accept: 'application/json',
+			Authorization: 'Bearer ' + token,
+			'Content-Type': 'application/json'
+		}
+	};
 
-	function create(token, return_url, cancel_url, transactions) {
-		var options = {
-			host: 'api.sandbox.paypal.com',
-			path: '/v1/payments/payment',
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				Authorization: 'Bearer ' + token,
-				'Content-Type': 'application/json'
-			}
-		};
+	var params = {
+		'intent': 'sale',
+		'redirect_urls':{
+			'return_url': return_url,
+			'cancel_url': cancel_url
+		},
+		'payer': {
+			'payment_method': 'paypal'
+		},
+		'transactions': transactions
+	};
 
-		var params = {
-			'intent': 'sale',
-			'redirect_urls':{
-				'return_url': return_url,
-				'cancel_url': cancel_url
-			},
-			'payer': {
-				'payment_method': 'paypal'
-			},
-			'transactions': transactions
-		};
-
-		var promise = new Promise(
-	    	function(resolve, reject) {
-	    		var req = https.request(options, function(res) {
-					var response = '';
-					res.on('data', function(data) {
-						response += data;
-					});
-					res.on('end', function() {
-						response = JSON.parse(response);
-						var redirectUrl = getRedirectUrl(response);
-						resolve(redirectUrl);
-					});
+	var promise = new Promise(
+    	function(resolve, reject) {
+    		var req = https.request(options, function(res) {
+				var response = '';
+				res.on('data', function(data) {
+					response += data;
 				});
-
-				req.on('error', function(e) {
-				  reject('problem with request: ' + e.message);
+				res.on('end', function() {
+					response = JSON.parse(response);
+					var redirectUrl = getRedirectUrl(response);
+					resolve(redirectUrl);
 				});
+			});
 
-				req.write(JSON.stringify(params));
-				req.end();
-	    	}
-		);
+			req.on('error', function(e) {
+			  reject('problem with request: ' + e.message);
+			});
 
-		return promise;
+			req.write(JSON.stringify(params));
+			req.end();
+    	}
+	);
 
-		function getRedirectUrl(createPaymentResponse) {
-			var linksLength = createPaymentResponse.links.length;
+	return promise;
 
-			for (var i = 0; i < linksLength; i++) {
-				if(createPaymentResponse.links[i].method === 'REDIRECT') {
-					return createPaymentResponse.links[i].href;
-				}
+	function getRedirectUrl(createPaymentResponse) {
+		var linksLength = createPaymentResponse.links.length;
+
+		for (var i = 0; i < linksLength; i++) {
+			if(createPaymentResponse.links[i].method === 'REDIRECT') {
+				return createPaymentResponse.links[i].href;
 			}
 		}
 	}
@@ -116,7 +109,6 @@ function executePayment(paymentId, payerId, token) {
 		path: '/v1/payments/payment/' + paymentId + '/execute/',
 		method: 'POST',
 		headers: {
-			Accept: 'application/json',
 			Authorization: 'Bearer ' + token,
 			'Content-Type': 'application/json'
 		}
@@ -146,5 +138,6 @@ function executePayment(paymentId, payerId, token) {
 	return promise;
 }
 
+exports.getToken = getToken;
 exports.createPayment = createPayment;
 exports.executePayment = executePayment;
